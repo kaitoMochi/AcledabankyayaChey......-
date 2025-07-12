@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>សំណើបង់ប្រាក់ - ACLEDA Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --acleda-blue: #002554;
+      --acleda-blue-dark: #001a3a;
+      --acleda-green: #0F766E;
+      --acleda-gold: #FACC15;
+      --text-dark: #1E293B;
+      --text-medium: #475569;
+      --text-light: #64748B;
+      --bg-light: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --shadow-xs: 0 1px 2px rgba(0, 37, 84, 0.05);
+      --shadow-sm: 0 1px 3px rgba(0, 37, 84, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 37, 84, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 37, 84, 0.15);
+      --border-radius-sm: 8px;
+      --border-radius: 12px;
+      --border-radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nokora', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Premium Top Bar */
+    .top-bar {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+
+    .back-btn {
+      color: var(--acleda-gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: white;
+      transform: translateX(-2px);
+    }
+
+    .title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .logo {
+      height: 30px;
+      margin-left: 10px;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Main Container */
+    .container {
+      padding: 24px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Payment Request Card */
+    .payment-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .payment-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .payment-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .payment-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 37, 84, 0.1), rgba(15, 118, 110, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acleda-blue);
+      font-size: 22px;
+    }
+
+    .payment-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--acleda-blue);
+    }
+
+    .payment-subtitle {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-medium);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--acleda-blue);
+      box-shadow: 0 0 0 3px rgba(0, 37, 84, 0.1);
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+
+    .input-with-icon .form-input {
+      padding-left: 44px;
+    }
+
+    .currency-selector {
+      display: flex;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      overflow: hidden;
+    }
+
+    .currency-option {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border-right: 1px solid var(--border-color);
+    }
+
+    .currency-option:last-child {
+      border-right: none;
+    }
+
+    .currency-option.active {
+      background: var(--acleda-blue);
+      color: white;
+    }
+
+    .currency-option:hover:not(.active) {
+      background: rgba(0, 37, 84, 0.05);
+    }
+
+    /* Recipient Section */
+    .recipient-section {
+      background: rgba(0, 37, 84, 0.03);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      border: 1px dashed var(--border-color);
+    }
+
+    .recipient-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .recipient-icon {
+      color: var(--acleda-blue);
+    }
+
+    .recipient-title {
+      font-weight: 500;
+      color: var(--acleda-blue);
+    }
+
+    .recipient-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .recipient-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-green));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .recipient-details h4 {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .recipient-details p {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .change-recipient {
+      color: var(--acleda-blue);
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--acleda-blue);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    /* Security Modal */
+    .security-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease-out;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      width: 90%;
+      max-width: 400px;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      animation: slideUp 0.3s ease-out forwards;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: white;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .security-instruction {
+      color: var(--text-medium);
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-size: 16px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--acleda-blue);
+      box-shadow: 0 0 0 3px rgba(0, 37, 84, 0.1);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+    }
+
+    .cancel-btn {
+      background: white;
+      color: var(--acleda-blue);
+      border: 1px solid var(--border-color);
+    }
+
+    .cancel-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .confirm-btn {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      border: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .confirm-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Premium Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 16px;
+      }
+      
+      .payment-card {
+        padding: 20px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Premium Top Bar -->
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="title">សំណើបង់ប្រាក់</div>
+    
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Payment Request Card -->
+    <div class="payment-card">
+      <div class="payment-header">
+        <div class="payment-icon">
+          <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <div>
+          <h1 class="payment-title">បង្កើតសំណើបង់ប្រាក់</h1>
+          <p class="payment-subtitle">សូមបំពេញព័ត៌មានដើម្បីបញ្ជូនសំណើទៅកាន់អ្នកទទួល</p>
+        </div>
+      </div>
+
+      <!-- Recipient Section -->
+      <div class="recipient-section">
+        <div class="recipient-header">
+          <i class="fas fa-user-circle recipient-icon"></i>
+          <h3 class="recipient-title">អ្នកទទួល</h3>
+        </div>
+        <div class="recipient-info">
+          <div class="recipient-avatar">ស</div>
+          <div class="recipient-details">
+            <h4>ចាន់ សូរិយ៉ា</h4>
+            <p>គណនី: 001-7654321-8</p>
+            <a href="#" class="change-recipient" onclick="showRecipientModal()">
+              <i class="fas fa-exchange-alt"></i> ផ្លាស់ប្តូរអ្នកទទួល
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Form -->
+      <form id="paymentRequestForm">
+        <div class="form-group">
+          <label class="form-label">ចំនួនទឹកប្រាក់</label>
+          <div class="input-with-icon">
+            <i class="fas fa-money-bill-wave input-icon"></i>
+            <input type="number" class="form-input" placeholder="0.00" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">រូបិយប័ណ្ណ</label>
+          <div class="currency-selector">
+            <div class="currency-option active">រៀល (៛)</div>
+            <div class="currency-option">ដុល្លារ ($)</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ពិពណ៌នា</label>
+          <input type="text" class="form-input" placeholder="ឧ. សំណើបង់ប្រាក់សម្រាប់សេវាកម្ម">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">កាលបរិច្ឆេទផុតកំណត់</label>
+          <div class="input-with-icon">
+            <i class="fas fa-calendar-alt input-icon"></i>
+            <input type="date" class="form-input">
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn btn-secondary">
+            <i class="fas fa-times"></i> បោះបង់
+          </button>
+          <button type="button" class="btn btn-primary" onclick="showSecurityModal()">
+            <i class="fas fa-paper-plane"></i> បញ្ជូនសំណើ
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Security Modal -->
+  <div id="securityModal" class="security-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h3 class="modal-title">ការផ្ទៀងផ្ទាត់សុវត្ថិភាព</h3>
+      </div>
+      <div class="modal-body">
+        <p class="security-instruction">សូមបញ្ចូលលេខសំងាត់របស់អ្នកដើម្បីបញ្ជូនសំណើបង់ប្រាក់</p>
+        
+        <div class="input-group">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" class="password-input" placeholder="លេខសំងាត់របស់អ្នក" required>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="modal-btn cancel-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+            បោះបង់
+          </button>
+          <button class="modal-btn confirm-btn" onclick="submitPaymentRequest()">
+            <i class="fas fa-check"></i>
+            បញ្ជាក់
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Currency selection
+    document.querySelectorAll('.currency-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.currency-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // Show security modal
+    function showSecurityModal() {
+      const form = document.getElementById('paymentRequestForm');
+      const amount = form.querySelector('input[type="number"]').value;
+      
+      if (!amount || amount <= 0) {
+        alert('សូមបញ្ចូលចំនួនទឹកប្រាក់ដែលត្រឹមត្រូវ');
+        return;
+      }
+      
+      const modal = document.getElementById('securityModal');
+      modal.style.display = 'flex';
+      document.querySelector('.password-input').value = '';
+      document.querySelector('.password-input').focus();
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('securityModal').style.display = 'none';
+    }
+
+    // Submit payment request
+    function submitPaymentRequest() {
+      const password = document.querySelector('.password-input').value;
+      
+      if (!password) {
+        alert('សូមបញ្ចូលលេខសំងាត់របស់អ្នក');
+        return;
+      }
+      
+      // Check if password is "chey"
+      if (password === "chey") {
+        // Show loading
+        const modalBody = document.querySelector('.modal-body');
+        modalBody.innerHTML = `
+          <div style="text-align: center; padding: 20px;">
+            <div class="loading-spinner" style="margin: 0 auto 16px;"></div>
+            <p style="color: var(--acleda-blue);">កំពុងបញ្ជូនសំណើ...</p>
+          </div>
+        `;
+        
+        // Simulate processing
+        setTimeout(() => {
+          alert('អ្នកបានជោគជ័យ! សំណើបង់ប្រាក់របស់អ្នកត្រូវបានបញ្ជូនដោយជោគជ័យ!');
+          window.location.href = 'confirmation.html';
+        }, 1500);
+      } else {
+        alert('លេខសំងាត់មិនត្រឹមត្រូវ! សូមព្យាយាមម្តងទៀត');
+      }
+    }
+
+    // Show recipient modal (would be implemented similarly)
+    function showRecipientModal() {
+      alert('អនុញ្ញាតឱ្យជ្រើសរើសអ្នកទទួលថ្មី');
+      // In full implementation, this would show a modal with recipient list
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target === document.getElementById('securityModal')) {
+        closeModal();
+      }
+    }
+</script>
+
+</body>
+</html>

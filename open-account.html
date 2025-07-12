@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>សមតុល្យ - ACLEDA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <style>
+    :root {
+      --acleda-blue: #002554;
+      --acleda-yellow: #facc15;
+      --acleda-green: #0f766e;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Nokora', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .top-bar {
+      background-color: var(--acleda-blue);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .top-bar .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--acleda-yellow);
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .top-bar .title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+
+
+    .logo {
+      width: 80px;
+      margin-left: 10px;
+    }
+
+    .balance-section {
+      padding: 20px;
+    }
+
+    .balance-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      background-color: var(--acleda-blue);
+      color: white;
+      padding: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header i {
+      color: var(--acleda-yellow);
+    }
+
+    .balance-content {
+      padding: 20px;
+    }
+
+    .account-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    .balance-currency {
+      margin-bottom: 20px;
+    }
+
+    .currency-label {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+
+    .balance-amount {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--acleda-green);
+      display: flex;
+      align-items: center;
+    }
+
+    .currency-symbol {
+      font-size: 18px;
+      margin-right: 5px;
+    }
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 0 20px 20px;
+    }
+
+    .action-btn {
+      background: white;
+      border-radius: 8px;
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--acleda-blue);
+      font-size: 12px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .action-btn i {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--acleda-blue);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    .transactions-section {
+      padding: 0 20px 20px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .view-all {
+      font-size: 14px;
+      color: var(--acleda-blue);
+      text-decoration: none;
+    }
+
+    .transaction-list {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+
+    .transaction-item {
+      padding: 16px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .transaction-item:last-child {
+      border-bottom: none;
+    }
+
+    .transaction-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .transaction-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acleda-blue);
+    }
+
+    .transaction-info h4 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .transaction-info p {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .transaction-amount {
+      font-weight: bold;
+      color: var(--acleda-green);
+    }
+
+    .transaction-amount.out {
+      color: #dc2626;
+    }
+    .scanner-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .scanner-container {
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .scanner-video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .scanner-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--acleda-yellow);
+      border-radius: 12px;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    .scanner-controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .scanner-btn {
+      background: var(--acleda-blue);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .scanner-btn:hover {
+      background: var(--acleda-yellow);
+      color: var(--acleda-blue);
+    }
+
+    .scanner-result {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      max-width: 90%;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .balance-amount {
+        font-size: 20px;
+      }
+      
+      .scanner-container {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="title">សមតុល្យ</div>
+   
+  </div>
+  <div class="balance-section">
+    <div class="balance-card">
+      <div class="card-header">
+        <i class="fas fa-wallet"></i>
+        <span>គណនីបច្ចុប្បន្ន</span>
+      </div>
+      <div class="balance-content">
+        <div class="account-info">
+          <span>គណនី: 001-1234567-8</span>
+          <span>ថ្ងៃខែ: 12/07/2025</span>
+        </div>
+        
+        <div class="balance-currency">
+          <div class="currency-label">សមតុល្យជារៀល</div>
+          <div class="balance-amount">
+            <span class="currency-symbol">៛</span>
+            <span>1,250,000</span>
+          </div>
+        </div>
+        
+        <div class="balance-currency">
+          <div class="currency-label">សមតុល្យជាដុល្លារ</div>
+          <div class="balance-amount">
+            <span class="currency-symbol">$</span>
+            <span>300.50</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <a href="#" class="action-btn">
+      <i class="fas fa-exchange-alt"></i>
+      <span>ផ្ទេរប្រាក់</span>
+    </a>
+    <a href="#" class="action-btn">
+      <i class="fas fa-mobile-alt"></i>
+      <span>បង់ថ្លៃ</span>
+    </a>
+    <button id="scan-btn" class="action-btn">
+      <i class="fas fa-qrcode"></i>
+      <span>ស្កែន QR</span>
+    </button>
+    <a href="#" class="action-btn">
+      <i class="fas fa-history"></i>
+      <span>ប្រវត្តិ</span>
+    </a>
+  </div>
+  <div class="transactions-section">
+    <div class="section-title">
+      <span>ប្រតិបត្តិការថ្មីៗ</span>
+      <a href="#" class="view-all">មើលទាំងអស់</a>
+    </div>
+    
+    <div class="transaction-list">
+      <div class="transaction-item">
+        <div class="transaction-details">
+          <div class="transaction-icon">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+          <div class="transaction-info">
+            <h4>ផ្ទេរប្រាក់ចូល</h4>
+            <p>ពី: Sok Dara • 10:45 AM</p>
+          </div>
+        </div>
+        <div class="transaction-amount">+៛150,000</div>
+      </div>
+      
+      <div class="transaction-item">
+        <div class="transaction-details">
+          <div class="transaction-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <div class="transaction-info">
+            <h4>AEON Mall</h4>
+            <p>ថ្ងៃទី 11 កក្កដា • 3:20 PM</p>
+          </div>
+        </div>
+        <div class="transaction-amount out">-៛75,000</div>
+      </div>
+      
+      <div class="transaction-item">
+        <div class="transaction-details">
+          <div class="transaction-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="transaction-info">
+            <h4>អគ្គិសនី</h4>
+            <p>បង់ថ្លៃប្រចាំខែ • 9:15 AM</p>
+          </div>
+        </div>
+        <div class="transaction-amount out">-៛120,000</div>
+      </div>
+    </div>
+  </div>
+  <div id="scanner-overlay" class="scanner-overlay">
+    <div class="scanner-container">
+      <video id="scanner-video" class="scanner-video" playsinline></video>
+      <div class="scanner-frame"></div>
+    </div>
+    
+    <div id="scanner-result" class="scanner-result"></div>
+    
+    <div class="scanner-controls">
+      <button id="close-scanner" class="scanner-btn" title="បិទ">
+        <i class="fas fa-times"></i>
+      </button>
+      <button id="toggle-flash" class="scanner-btn" title="ហ្វ្លាស៍">
+        <i class="fas fa-bolt"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const scanBtn = document.getElementById('scan-btn');
+      const scannerOverlay = document.getElementById('scanner-overlay');
+      const closeScanner = document.getElementById('close-scanner');
+      const toggleFlash = document.getElementById('toggle-flash');
+      const scannerVideo = document.getElementById('scanner-video');
+      const scannerResult = document.getElementById('scanner-result');
+      
+      let stream = null;
+      let flashOn = false;
+      let scanInterval = null;
+      scanBtn.addEventListener('click', async function() {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { 
+              facingMode: 'environment',
+              width: { ideal: 1280 },
+              height: { ideal: 720 }
+            } 
+          });
+          
+          scannerVideo.srcObject = stream;
+          scannerVideo.play();
+          scannerOverlay.style.display = 'flex';
+          scannerResult.style.display = 'none';
+          scanInterval = setInterval(scanQRCode, 500);
+        } catch (err) {
+          console.error('Error accessing camera:', err);
+          alert('មិនអាចបើកកាមេរ៉ាបាន។ សូមផ្ទៀងផ្ទាត់ការអនុញ្ញាត។');
+        }
+      });
+      closeScanner.addEventListener('click', function() {
+        closeScannerHandler();
+      });
+      toggleFlash.addEventListener('click', async function() {
+        if (!stream) return;
+        
+        const track = stream.getVideoTracks()[0];
+        if (!track || !track.getCapabilities) return;
+        
+        const capabilities = track.getCapabilities();
+        if (!capabilities.torch) {
+          alert('ឧបករណ៍របស់អ្នកមិនគាំទ្រ Flash។');
+          return;
+        }
+        
+        try {
+          flashOn = !flashOn;
+          await track.applyConstraints({
+            advanced: [{ torch: flashOn }]
+          });
+          toggleFlash.innerHTML = flashOn ? 
+            '<i class="fas fa-bolt-slash"></i>' : 
+            '<i class="fas fa-bolt"></i>';
+        } catch (err) {
+          console.error('Error toggling flash:', err);
+        }
+      });
+      function scanQRCode() {
+        if (scannerVideo.readyState !== scannerVideo.HAVE_ENOUGH_DATA) return;
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = scannerVideo.videoWidth;
+        canvas.height = scannerVideo.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(scannerVideo, 0, 0, canvas.width, canvas.height);
+        
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: 'dontInvert',
+        });
+        
+        if (code) {
+          clearInterval(scanInterval);
+          scannerResult.style.display = 'block';
+          scannerResult.innerHTML = `
+            <h4>បានស្កែនរួច!</h4>
+            <p>${code.data}</p>
+            <button onclick="processScannedData('${code.data}')" class="action-btn" style="margin-top: 10px;">
+              បន្ត
+            </button>
+          `;
+        }
+      }
+
+      function closeScannerHandler() {
+        clearInterval(scanInterval);
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+          stream = null;
+        }
+        scannerOverlay.style.display = 'none';
+        scannerVideo.srcObject = null;
+      }
+      window.processScannedData = function(data) {
+        alert('បានស្កែនទិន្នន័យ៖ ' + data);
+        closeScannerHandler();
+      };
+      scannerOverlay.addEventListener('click', function(e) {
+        if (e.target === scannerOverlay) {
+          closeScannerHandler();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

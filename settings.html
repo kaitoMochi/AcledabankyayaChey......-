@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>កំណត់ - ACLEDA Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --acleda-blue: #002554;
+      --acleda-blue-dark: #001a3a;
+      --acleda-green: #0F766E;
+      --acleda-gold: #FACC15;
+      --acleda-gold-dark: #E6B800;
+      --text-dark: #1E293B;
+      --text-medium: #475569;
+      --text-light: #64748B;
+      --bg-light: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --shadow-xs: 0 1px 2px rgba(0, 37, 84, 0.05);
+      --shadow-sm: 0 1px 3px rgba(0, 37, 84, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 37, 84, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 37, 84, 0.15);
+      --border-radius-sm: 8px;
+      --border-radius: 12px;
+      --border-radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nokora', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Premium Top Bar */
+    .top-bar {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+
+    .back-btn {
+      color: var(--acleda-gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: white;
+      transform: translateX(-2px);
+    }
+
+    .title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .logo {
+      height: 30px;
+      margin-left: 10px;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Premium Settings Container */
+    .settings-container {
+      padding: 24px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Premium User Profile */
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .user-profile:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .user-info h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .user-info p {
+      font-size: 14px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .verified-badge {
+      color: var(--acleda-green);
+      font-size: 14px;
+    }
+
+    /* Premium Settings Card */
+    .settings-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 24px;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .settings-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .settings-header {
+      padding: 18px 20px;
+      background: rgba(0, 37, 84, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      color: var(--acleda-blue);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+    }
+
+    .settings-header i {
+      color: var(--acleda-blue);
+      width: 24px;
+      text-align: center;
+    }
+
+    .settings-body {
+      padding: 0;
+    }
+
+    /* Premium Settings Item */
+    .settings-item {
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .settings-item:last-child {
+      border-bottom: none;
+    }
+
+    .settings-item:hover {
+      background: rgba(0, 37, 84, 0.02);
+    }
+
+    .settings-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .settings-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--border-radius-sm);
+      background: linear-gradient(135deg, rgba(0, 37, 84, 0.1), rgba(15, 118, 110, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acleda-blue);
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .settings-item:hover .settings-icon {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .settings-text h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-dark);
+    }
+
+    .settings-text p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+
+    .settings-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--acleda-green);
+      color: white;
+      margin-left: 8px;
+    }
+
+    .settings-arrow {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .settings-item:hover .settings-arrow {
+      color: var(--acleda-blue);
+      transform: translateX(3px);
+    }
+
+    /* Premium Security Modal */
+    .security-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease-out;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      width: 90%;
+      max-width: 400px;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      animation: slideUp 0.3s ease-out forwards;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: white;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .security-instruction {
+      color: var(--text-medium);
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-size: 16px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--acleda-blue);
+      box-shadow: 0 0 0 3px rgba(0, 37, 84, 0.1);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--border-radius-sm);
+      font-family: 'Nokora', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+    }
+
+    .cancel-btn {
+      background: white;
+      color: var(--acleda-blue);
+      border: 1px solid var(--border-color);
+    }
+
+    .cancel-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .confirm-btn {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      border: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .confirm-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Premium Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Premium Responsive */
+    @media (max-width: 480px) {
+      .settings-container {
+        padding: 20px 16px;
+      }
+      
+      .user-profile {
+        padding: 16px;
+      }
+      
+      .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .settings-item {
+        padding: 16px;
+      }
+      
+      .settings-info {
+        gap: 12px;
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+    }
+
+    /* Premium Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ccc;
+      transition: var(--transition);
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background: var(--acleda-green);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Premium Loading State */
+    .loading-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(0, 37, 84, 0.1);
+      border-top: 3px solid var(--acleda-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Premium Top Bar -->
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="title">កំណត់</div>
+   
+  </div>
+
+  <!-- Premium Settings Container -->
+  <div class="settings-container">
+    <!-- Premium User Profile -->
+    <div class="user-profile" onclick="showSecurityModal('profile.html')">
+      <div class="avatar">ស</div>
+      <div class="user-info">
+        <h2>ចាន់ សូរិយ៉ា</h2>
+        <p>
+          <i class="fas fa-check-circle verified-badge"></i>
+          គណនី: 001-1234567-8
+        </p>
+      </div>
+      <i class="fas fa-chevron-right settings-arrow"></i>
+    </div>
+
+    <!-- Account Settings Card -->
+    <div class="settings-card">
+      <div class="settings-header">
+        <i class="fas fa-user-cog"></i>
+        <span>ការកំណត់គណនី</span>
+      </div>
+      <div class="settings-body">
+        <a href="#" class="settings-item" onclick="showSecurityModal('profile.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-user-edit"></i>
+            </div>
+            <div class="settings-text">
+              <h3>កែប្រែព័ត៌មាន</h3>
+              <p>ផ្លាស់ប្តូរព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="showSecurityModal('password.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ផ្លាស់ប្តូរលេខសំងាត់</h3>
+              <p>ធ្វើបច្ចុប្បន្នភាពលេខសំងាត់របស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="showSecurityModal('security.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="settings-text">
+              <h3>សុវត្ថិភាពគណនី</h3>
+              <p>ការកំណត់សុវត្ថិភាពនិងការចូល</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Banking Settings Card -->
+    <div class="settings-card">
+      <div class="settings-header">
+        <i class="fas fa-university"></i>
+        <span>ការកំណត់ធនាគារ</span>
+      </div>
+      <div class="settings-body">
+        <a href="#" class="settings-item" onclick="showSecurityModal('accounts.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ការគ្រប់គ្រងគណនី</h3>
+              <p>គ្រប់គ្រងគណនីធនាគាររបស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="showSecurityModal('cards.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="settings-text">
+              <h3>កាតនិងធានា</h3>
+              <p>គ្រប់គ្រងកាតឥណទាន/ឥណពន្ធរបស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="showSecurityModal('limits.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ដែនកំណត់ធនាគារ</h3>
+              <p>កំណត់ដែនកំណត់ប្រតិបត្តិការ</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- App Preferences Card -->
+    <div class="settings-card">
+      <div class="settings-header">
+        <i class="fas fa-mobile-alt"></i>
+        <span>ចំណូលចិត្តកម្មវិធី</span>
+      </div>
+      <div class="settings-body">
+        <div class="settings-item" onclick="showSecurityModal('language.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ភាសាកម្មវិធី</h3>
+              <p>ផ្លាស់ប្តូរភាសានិងតំបន់</p>
+            </div>
+          </div>
+          <div style="color: var(--text-light); font-size: 14px;">ភាសាខ្មែរ</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </div>
+        
+        <div class="settings-item">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ការជូនដំណឹង</h3>
+              <p>គ្រប់គ្រងការជូនដំណឹងរបស់អ្នក</p>
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <div class="settings-item" onclick="showSecurityModal('theme.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <div class="settings-text">
+              <h3>រូបរាងនិងពណ៌</h3>
+              <p>ប្ដូររូបរាងកម្មវិធីរបស់អ្នក</p>
+            </div>
+          </div>
+          <div style="color: var(--text-light); font-size: 14px;">ពណ៌លំនាំដើម</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </div>
+        
+        <div class="settings-item">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ការចូលដោយស្វ័យប្រវត្តិ</h3>
+              <p>អនុញ្ញាតឱ្យចូលដោយស្នាមម្រាមដៃ</p>
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Help & Support Card -->
+    <div class="settings-card">
+      <div class="settings-header">
+        <i class="fas fa-question-circle"></i>
+        <span>ជំនួយនិងគាំទ្រ</span>
+      </div>
+      <div class="settings-body">
+        <a href="#" class="settings-item" onclick="window.location.href='contact.html'">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="settings-text">
+              <h3>សេវាអតិថិជន</h3>
+              <p>ទាក់ទងក្រុមគាំទ្រយើងខ្ញុំ</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="window.location.href='faq.html'">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="settings-text">
+              <h3>សំណួរដែលសួរញឹកញាប់</h3>
+              <p>រកចម្លើយសំណួររបស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="window.location.href='feedback.html'">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-comment-alt"></i>
+            </div>
+            <div class="settings-text">
+              <h3>ផ្តល់មតិយោបល់</h3>
+              <p>ចែករំលែកអនុភាពរបស់អ្នក</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- System Card -->
+    <div class="settings-card">
+      <div class="settings-header">
+        <i class="fas fa-cog"></i>
+        <span>ប្រព័ន្ធ</span>
+      </div>
+      <div class="settings-body">
+        <a href="#" class="settings-item" onclick="showSecurityModal('about.html')">
+          <div class="settings-info">
+            <div class="settings-icon">
+              <i class="fas fa-info"></i>
+            </div>
+            <div class="settings-text">
+              <h3>អំពីកម្មវិធី</h3>
+              <p>ព័ត៌មានកំណែនិងអ្នកអភិវឌ្ឍ</p>
+            </div>
+          </div>
+          <div style="color: var(--text-light); font-size: 14px;">កំណែ 1.2.4</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item" onclick="showLogoutModal()">
+          <div class="settings-info">
+            <div class="settings-icon" style="background: rgba(220, 38, 38, 0.1); color: #DC2626;">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div class="settings-text">
+              <h3 style="color: #DC2626;">ចាកចេញពីគណនី</h3>
+              <p>ចាកចេញពីកម្មវិធីធនាគារនេះ</p>
+            </div>
+          </div>
+          <i class="fas fa-chevron-right settings-arrow" style="color: #DC2626;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium Security Modal -->
+  <div id="securityModal" class="security-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h3 class="modal-title">ការផ្ទៀងផ្ទាត់សុវត្ថិភាព</h3>
+      </div>
+      <div class="modal-body">
+        <p class="security-instruction">សូមបញ្ចូលលេខសំងាត់របស់អ្នកដើម្បីបន្តទៅកាន់ទំព័រកំណត់</p>
+        
+        <div class="input-group">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" class="password-input" placeholder="លេខសំងាត់របស់អ្នក">
+        </div>
+        
+        <div class="modal-actions">
+          <button class="modal-btn cancel-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+            បោះបង់
+          </button>
+          <button class="modal-btn confirm-btn" onclick="verifyPassword()">
+            <i class="fas fa-check"></i>
+            បញ្ជាក់
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div id="logoutModal" class="security-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeLogoutModal()">&times;</button>
+        <h3 class="modal-title">ផ្ទៀងផ្ទាត់ការចាកចេញ</h3>
+      </div>
+      <div class="modal-body">
+        <p class="security-instruction">តើអ្នកប្រាកដថាចង់ចាកចេញពីកម្មវិធីធនាគារនេះមែនទេ?</p>
+        
+        <div class="modal-actions">
+          <button class="modal-btn cancel-btn" onclick="closeLogoutModal()">
+            <i class="fas fa-times"></i>
+            ទេ
+          </button>
+          <button class="modal-btn confirm-btn" onclick="performLogout()" style="background: linear-gradient(135deg, #DC2626, #B91C1C);">
+            <i class="fas fa-sign-out-alt"></i>
+            ចាកចេញ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

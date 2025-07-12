@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>ជំពាក់ - ACLEDA Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --acleda-blue: #002554; /* Exact ACLEDA blue as requested */
+      --acleda-green: #0F766E; /* Official ACLEDA green */
+      --acleda-gold: #D4AF37; /* Complementary gold */
+      --dark-text: #1A1A1A;
+      --light-text: #4A4A4A;
+      --card-bg: #FFFFFF;
+      --page-bg: #F5F7FA;
+      --border-radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 37, 84, 0.08);
+    }
+    
+    body {
+      font-family: 'Nokora', sans-serif;
+      background: var(--page-bg);
+      color: var(--dark-text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* Top Bar with #002554 */
+    .top-bar {
+      background: var(--acleda-blue);
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 37, 84, 0.2);
+    }
+
+    .back-btn {
+      color: var(--acleda-gold);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .logo {
+      height: 28px;
+      margin-left: 10px;
+    }
+
+    /* Loan Summary Card */
+    .loan-container {
+      padding: 20px;
+    }
+
+    .loan-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .loan-header {
+      background: var(--acleda-blue);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .loan-header i {
+      color: var(--acleda-gold);
+    }
+
+    .loan-body {
+      padding: 20px;
+    }
+
+    .loan-info {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0, 37, 84, 0.03);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--light-text);
+    }
+
+    .loan-item {
+      margin-bottom: 24px;
+    }
+
+    .loan-label {
+      font-size: 14px;
+      color: var(--light-text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .loan-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--acleda-blue);
+      display: flex;
+      align-items: center;
+    }
+
+    .loan-value.warning {
+      color: #D32F2F;
+    }
+
+    .currency {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    /* Loan Products */
+    .products-container {
+      padding: 0 20px 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--acleda-blue);
+      margin-bottom: 16px;
+    }
+
+    .loan-products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(0, 37, 84, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acleda-blue);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--acleda-blue);
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: var(--light-text);
+      margin-bottom: 16px;
+    }
+
+    .apply-btn {
+      background: var(--acleda-blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    /* Payment Schedule */
+    .payments-container {
+      padding: 0 20px 20px;
+    }
+
+    .payment-list {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .payment-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .payment-date {
+      font-weight: 600;
+    }
+
+    .payment-status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .status-paid {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .status-pending {
+      background: #FFF8E1;
+      color: #FF8F00;
+    }
+
+    .payment-amount {
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .loan-products {
+        grid-template-columns: 1fr;
+      }
+      
+      .loan-value {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar with #002554 -->
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="title">ជំពាក់</div>
+   
+  </div>
+
+  <!-- Loan Summary Section -->
+  <div class="loan-container">
+    <div class="loan-card">
+      <div class="loan-header">
+        <i class="fas fa-hand-holding-usd"></i>
+        <span>សរុបជំពាក់របស់អ្នក</span>
+      </div>
+      <div class="loan-body">
+        <div class="loan-info">
+          <span><i class="fas fa-user"></i> អតិថិជន: 001-1234567-8</span>
+          <span><i class="fas fa-calendar-alt"></i> 12/07/2025</span>
+        </div>
+        
+        <div class="loan-item">
+          <div class="loan-label">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>សរុបជំពាក់</span>
+          </div>
+          <div class="loan-value">
+            <span class="currency">៛</span>
+            <span>25,000,000</span>
+          </div>
+        </div>
+        
+        <div class="loan-item">
+          <div class="loan-label">
+            <i class="fas fa-clock"></i>
+            <span>ថ្ងៃបញ្ចាំ</span>
+          </div>
+          <div class="loan-value warning">
+            <span>15/09/2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Products Section -->
+  <div class="products-container">
+    <div class="section-title">សេវាកម្មឥណទាន</div>
+    
+    <div class="loan-products">
+      <div class="product-card">
+        <div class="product-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <h3 class="product-name">ឥណទានលំនៅដ្ឋាន</h3>
+        <p class="product-desc">អត្រាការប្រាក់ពិសេសសម្រាប់ទិញផ្ទះ</p>
+        <button class="apply-btn">
+          <span>ដាក់ពាក្យ</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-icon">
+          <i class="fas fa-car"></i>
+        </div>
+        <h3 class="product-name">ឥណទានយានយន្ត</h3>
+        <p class="product-desc">ជម្រើសហិរញ្ញវត្ថុសម្រាប់ទិញរថយន្ត</p>
+        <button class="apply-btn">
+          <span>ដាក់ពាក្យ</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-icon">
+          <i class="fas fa-business-time"></i>
+        </div>
+        <h3 class="product-name">ឥណទានអាជីវកម្ម</h3>
+        <p class="product-desc">គាំទ្រអាជីវកម្មរបស់អ្នក</p>
+        <button class="apply-btn">
+          <span>ដាក់ពាក្យ</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="product-name">ឥណទានការសិក្សា</h3>
+        <p class="product-desc">វិនិយោគទៅលើអនាគតកូនរបស់អ្នក</p>
+        <button class="apply-btn">
+          <span>ដាក់ពាក្យ</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="payments-container">
+    <div class="section-title">កាលវិភាគបង់ប្រាក់</div>
+    
+    <div class="payment-list">
+      <div class="payment-item">
+        <div>
+          <div class="payment-date">15/07/2025</div>
+          <div class="payment-status status-paid">បានបង់</div>
+        </div>
+        <div class="payment-amount">៛1,250,000</div>
+      </div>
+      
+      <div class="payment-item">
+        <div>
+          <div class="payment-date">15/08/2025</div>
+          <div class="payment-status status-pending">មិនទាន់បង់</div>
+        </div>
+        <div class="payment-amount">៛1,250,000</div>
+      </div>
+      
+      <div class="payment-item">
+        <div>
+          <div class="payment-date">15/09/2025</div>
+          <div class="payment-status status-pending">មិនទាន់បង់</div>
+        </div>
+        <div class="payment-amount">៛1,250,000</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

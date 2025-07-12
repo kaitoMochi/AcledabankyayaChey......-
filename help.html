@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>ជំនួយ - ACLEDA Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --acleda-blue: #002554;
+      --acleda-blue-dark: #001a3a;
+      --acleda-green: #0F766E;
+      --acleda-gold: #FACC15;
+      --text-dark: #1E293B;
+      --text-medium: #475569;
+      --text-light: #64748B;
+      --bg-light: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --shadow-xs: 0 1px 2px rgba(0, 37, 84, 0.05);
+      --shadow-sm: 0 1px 3px rgba(0, 37, 84, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 37, 84, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 37, 84, 0.15);
+      --border-radius-sm: 8px;
+      --border-radius: 12px;
+      --border-radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nokora', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    .top-bar {
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+
+    .back-btn {
+      color: var(--acleda-gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: white;
+      transform: translateX(-2px);
+    }
+
+    .title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .logo {
+      height: 30px;
+      margin-left: 10px;
+      filter: brightness(0) invert(1);
+    }
+
+
+    .help-container {
+      padding: 24px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+
+    .help-hero {
+      background: linear-gradient(135deg, rgba(0, 37, 84, 0.03), rgba(15, 118, 110, 0.03));
+      border-radius: var(--border-radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .help-icon {
+      font-size: 48px;
+      color: var(--acleda-blue);
+      margin-bottom: 16px;
+    }
+
+    .help-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--acleda-blue);
+    }
+
+    .help-subtitle {
+      font-size: 15px;
+      color: var(--text-medium);
+      margin-bottom: 20px;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 20px 14px 48px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-family: 'Nokora', sans-serif;
+      font-size: 15px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--acleda-blue);
+      box-shadow: 0 0 0 3px rgba(0, 37, 84, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+
+
+    .help-categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 37, 84, 0.2);
+    }
+
+    .category-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 37, 84, 0.1), rgba(15, 118, 110, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acleda-blue);
+      font-size: 20px;
+    }
+
+    .category-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--acleda-blue);
+    }
+
+    .category-desc {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+
+    .faq-section {
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--acleda-blue);
+    }
+
+    .view-all {
+      font-size: 14px;
+      color: var(--acleda-blue);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .faq-list {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .faq-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item:hover {
+      background: rgba(0, 37, 84, 0.02);
+    }
+
+    .faq-question {
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      font-size: 14px;
+      color: var(--text-medium);
+      padding-top: 12px;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-toggle {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+      color: var(--acleda-blue);
+    }
+
+  
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .contact-method {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--border-radius-sm);
+      background: rgba(0, 37, 84, 0.03);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-method:hover {
+      background: rgba(0, 37, 84, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--acleda-blue), var(--acleda-blue-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .contact-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--acleda-blue);
+    }
+
+    .contact-detail {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+  
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .help-categories,
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+      
+      .help-hero {
+        padding: 20px 16px;
+      }
+      
+      .contact-card {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .help-container {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="title">ជំនួយ</div>
+  
+  </div>
+
+  <div class="help-container">
+
+    <div class="help-hero">
+      <div class="help-icon">
+        <i class="fas fa-question-circle"></i>
+      </div>
+      <h1 class="help-title">តើយើងអាចជួយអ្នកដោយរបៀបណា?</h1>
+      <p class="help-subtitle">ស្វែងរកចម្លើយឬទាក់ទងក្រុមគាំទ្ររបស់យើង</p>
+      
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="ស្វែងរកជំនួយ...">
+      </div>
+    </div>
+
+
+    <div class="help-categories">
+      <a href="faq.html" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <h3 class="category-title">សំណួរដែលសួរញឹកញាប់</h3>
+        <p class="category-desc">រកចម្លើយសំណួរដែលអ្នកមាន</p>
+      </a>
+      
+      <a href="guides.html" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <h3 class="category-title">ការណែនាំ</h3>
+        <p class="category-desc">រៀនពីរបៀបប្រើប្រាស់កម្មវិធី</p>
+      </a>
+      
+      <a href="security.html" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="category-title">សុវត្ថិភាព</h3>
+        <p class="category-desc">គន្លឹះសុវត្ថិភាពធនាគារអនឡាញ</p>
+      </a>
+      
+      <a href="fees.html" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <h3 class="category-title">ថ្លៃសេវាកម្ម</h3>
+        <p class="category-desc">ព័ត៌មានអំពីថ្លៃដើមនិងគម្រោង</p>
+      </a>
+    </div>
+
+    <div class="faq-section">
+      <div class="section-header">
+        <h2 class="section-title">សំណួរដែលសួរញឹកញាប់</h2>
+        <a href="faq.html" class="view-all">
+          <span>មើលទាំងអស់</span>
+          <i class="fas fa-chevron-right"></i>
+        </a>
+      </div>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>តើធ្វើដូចម្តេចដើម្បីផ្ទេរប្រាក់?</span>
+            <i class="fas fa-chevron-down faq-toggle"></i>
+          </div>
+          <div class="faq-answer">
+            អ្នកអាចផ្ទេរប្រាក់តាមរយៈផ្ទាំងផ្ទេរប្រាក់នៅក្នុងកម្មវិធី។ ជ្រើសរើសគណនីអ្នកទទួល បញ្ចូលចំនួនប្រាក់ និងអ៊ីនធឺណិតអាជ្ញាប័ណ្ណ បន្ទាប់មកផ្ទៀងផ្ទាត់ដោយលេខសំងាត់។
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>តើធ្វើដូចម្តេចដើម្បីដកប្រាក់ដោយគ្មានកាត?</span>
+            <i class="fas fa-chevron-down faq-toggle"></i>
+          </div>
+          <div class="faq-answer">
+            អ្នកអាចប្រើលក្ខណៈពិសេសដកប្រាក់ដោយគ្មានកាតតាមរយៈកម្មវិធី ACLEDA mBanking។ ជ្រើសរើសម៉ាស៊ីន ATM នៅជិតអ្នក និងបញ្ចូលលេខកូដដែលបានផ្ញើទៅលេខទូរស័ព្ទរបស់អ្នក។
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>តើធ្វើដូចម្តេចដើម្បីដាក់ពាក្យឥណទាន?</span>
+            <i class="fas fa-chevron-down faq-toggle"></i>
+          </div>
+          <div class="faq-answer">
+            អ្នកអាចដាក់ពាក្យឥណទានតាមអ៊ីនធឺណិតតាមរយៈកម្មវិធី ACLEDA mBanking។ ចូលទៅផ្នែក "ឥណទាន" ជ្រើសរើសប្រភេទឥណទានដែលអ្នកចង់បាន និងបំពេញទម្រង់ពាក្យសុំ។
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="contact-card">
+      <h2 class="section-title">ទាក់ទងក្រុមគាំទ្ររបស់យើង</h2>
+      <p style="color: var(--text-light); margin-bottom: 16px; font-size: 14px;">យើងខ្ញុំត្រៀមខ្លួនជួយអ្នករាល់ពេលវេលា</p>
+      
+      <div class="contact-methods">
+        <a href="tel:023998777" class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3 class="contact-title">ទូរស័ព្ទ</h3>
+          <p class="contact-detail">0979768434</p>
+        </a>
+        
+        <a href="mailto:contact@acledabank.com.kh" class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="contact-title">អ៊ីមែល</h3>
+          <p class="contact-detail">contact@acledabank.com.kh</p>
+        </a>
+        
+        <a href="https://m.me/acledabank" class="contact-method">
+          <div class="contact-icon">
+            <i class="fab fa-facebook-messenger"></i>
+          </div>
+          <h3 class="contact-title">Messenger</h3>
+          <p class="contact-detail">ACLEDA Bank</p>
+        </a>
+        
+        <a href="https://www.acledabank.com.kh/contact" class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3 class="contact-title">សាខា</h3>
+          <p class="contact-detail">ស្វែងរកសាខាជិតអ្នក</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    function toggleFAQ(element) {
+      const faqItem = element.closest('.faq-item');
+      faqItem.classList.toggle('active');
+    }
+
+    const searchInput = document.querySelector('.search-input');
+    searchInput.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+   
+        alert('ស្វែងរក: ' + this.value);
+      }
+    });
+
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        toggleFAQ(this);
+      });
+    });
+  </script>
+
+</body>
+</html>
